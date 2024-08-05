@@ -1,23 +1,4 @@
-import { useState } from "react";
-
-export default function UserInput(){
-    // Genero uno state solo combinato per tutti gli input
-    const [userInput, setUserInput] = useState({
-        initialInvestment: 10000,
-        annualInvestment: 1200,
-        expectedReturn: 6,
-        duration: 10
-    })
-
-    function handleChange(inputIdentifier, newValue){
-        setUserInput((prevUserInput) => {
-            return {
-                ...prevUserInput, 
-                [inputIdentifier]: newValue
-            };
-        });
-    }
-
+export default function UserInput({onChange, userInput}){
     // Genero uno state per ogni input
     // const [initialInvestmentValue, setInitialInvestmentValue] = useState(0);
     // function handleInitialInvestmentChange(event){
@@ -41,21 +22,21 @@ export default function UserInput(){
                 <div className="input-group">
                     <div>
                         <label htmlFor="initial-investment">Initial Investment</label>
-                        <input id="initial-investment" type="number" required value={userInput.initialInvestment} onChange={(event) => handleChange('initialInvestment', event.target.value)} />
+                        <input id="initial-investment" type="number" required value={userInput.initialInvestment} onChange={(event) => onChange('initialInvestment', event.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="annual-investment">Annual Investment</label>
-                        <input id="annual-investment" type="number" required value={userInput.annualInvestment} onChange={(event) => handleChange('annualInvestment', event.target.value)} />
+                        <input id="annual-investment" type="number" required value={userInput.annualInvestment} onChange={(event) => onChange('annualInvestment', event.target.value)} />
                     </div>
                 </div>
                 <div className="input-group">
                     <div>
                         <label htmlFor="expected-return">Expected Return</label>
-                        <input id="expected-return" type="number" required value={userInput.expectedReturn} onChange={(event) => handleChange('expectedReturn', event.target.value)} />
+                        <input id="expected-return" type="number" required value={userInput.expectedReturn} onChange={(event) => onChange('expectedReturn', event.target.value)} />
                     </div>
                     <div>
                         <label htmlFor="duration">Duration</label>
-                        <input id="duration" type="number" required value={userInput.duration} onChange={(event) => handleChange('duration', event.target.value)}/>
+                        <input id="duration" type="number" required value={userInput.duration} onChange={(event) => onChange('duration', event.target.value)}/>
                     </div>
                 </div>
             </section>
